@@ -1,5 +1,5 @@
-import React from 'react'
-import Board from "./Board"
+import React from "react";
+import Board from "./Board";
 
 class Game extends React.Component {
   constructor(props) {
@@ -49,10 +49,17 @@ class Game extends React.Component {
     const winner = calculateWinner(current.squares);
 
     const moves = history.map((step, move) => {
-      const desc = move ? "Go to move #" + move + `(${step.col} ${step.row})`: "Go to game start";
+      const desc = move
+        ? "Go to move #" + move + `(${step.col} ${step.row})`
+        : "Go to game start";
       return (
         <li key={move}>
-          <button onClick={() => this.jumpTo(move)}>{desc}</button>
+          <button
+            onClick={() => this.jumpTo(move)}
+            className={this.state.stepNumber === move ? "bold" : ""}
+          >
+            {desc}
+          </button>
         </li>
       );
     });
@@ -80,7 +87,7 @@ class Game extends React.Component {
   }
 }
 
-export default Game
+export default Game;
 
 function calculateWinner(squares) {
   const lines = [
