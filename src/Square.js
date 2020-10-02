@@ -1,11 +1,14 @@
-import React from 'react'
+import React from "react";
 
-function Square({value, onClick}) {
+function Square({ value, onClick, isHighlight }) {
   return (
-    <button className="square" onClick={onClick}>
+    <button
+      className={`square ${isHighlight ? "highlight" : ""}`}
+      onClick={onClick}
+    >
       {value}
     </button>
   );
 }
 
-export default Square
+export default Square;

@@ -3,7 +3,8 @@ body {
   margin: 20px;
 }
 
-ol, ul {
+ol,
+ul {
   padding-left: 30px;
 }
 
@@ -51,4 +52,8 @@ ol, ul {
 
 .bold {
   font-weight: bold;
+}
+
+.highlight {
+  background-color: yellow;
 }

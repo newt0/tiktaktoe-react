@@ -2,12 +2,13 @@ import React from "react";
 import Square from "./Square";
 
 class Board extends React.Component {
-  renderSquare(i) {
+  renderSquare(i, isHighlight = false) {
     return (
       <Square
         value={this.props.squares[i]}
         onClick={() => this.props.onClick(i)}
         key={i}
+        isHighlight={isHighlight}
       />
     );
   }
@@ -23,7 +24,10 @@ class Board extends React.Component {
                 {Array(3)
                   .fill(0)
                   .map((col, j) => {
-                    return this.renderSquare(i * 3 + j);
+                    return this.renderSquare(
+                      i * 3 + j,
+                      this.props.highlightCells.indexOf(i * 3 + j) !== -1
+                    );
                   })}
               </div>
             );
