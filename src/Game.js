@@ -73,10 +73,17 @@ class Game extends React.Component {
 
     let status;
     if (settlement) {
-      status = "Winner:" + settlement;
+      //ここから追加
+      if (settlement.isDraw) {
+        status = "Draw";
+      } else {
+        status = "Winner: " + settlement.winner;
+      }
+      //ここまで追加
     } else {
-      status = "Next player:" + (this.state.xIsNext ? "X" : "O");
+      status = "Next player: " + (this.state.xIsNext ? "X" : "O");
     }
+
     return (
       <div className="game">
         <div className="game-board">
@@ -117,8 +124,18 @@ function calculateWinner(squares) {
       return {
         winner: squares[a],
         line: [a, b, c],
+        isDraw: false,
       };
     }
   }
+
+  if (squares.filter((e) => !e).length === 0) {
+    return {
+      isDraw: true,
+      winner: null,
+      line: [],
+    };
+  }
+
   return null;
 }
